@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>RIWAQ MOTORS — بيع و كراء السيارات الفاخرة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@200;300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#06080F;
+  --ink-2:#0B0F1A;
+  --white:#FFFFFF;
+  --royal:#2451E6;
+  --royal-soft:#4D74FF;
+  --royal-deep:#101F5C;
+  --ice:#E8EEFF;
+  --mist:rgba(232,238,255,.62);
+  --glass:rgba(255,255,255,.07);
+  --glass-strong:rgba(255,255,255,.12);
+  --line:rgba(255,255,255,.14);
+  --r-lg:26px;
+  --r-md:18px;
+  --shadow:0 24px 60px -18px rgba(0,0,0,.55);
+  --ease:cubic-bezier(.22,.68,0,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Tajawal',system-ui,sans-serif;
+  background:var(--ink);
+  color:var(--white);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(36,81,230,.22), transparent 60%),
+    radial-gradient(700px 460px at 0% 110%, rgba(36,81,230,.14), transparent 55%),
+    var(--ink);
+}
+h1,h2,h3,.display{font-family:'Alexandria',sans-serif}
+img{display:block;max-width:100%}
+button,input,select{font-family:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+::selection{background:var(--royal);color:#fff}
+
+/* ---------- Navbar ---------- */
+.nav{
+  position:fixed;inset-inline:0;top:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(16px,4vw,48px);
+  transition:background .4s var(--ease), backdrop-filter .4s;
+}
+.nav.scrolled{
+  background:rgba(6,8,15,.55);
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Alexandria';font-weight:700;font-size:1.05rem;letter-spacing:.5px}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--royal);box-shadow:0 0 14px var(--royal-soft)}
+.brand small{font-weight:300;color:var(--mist);font-size:.72rem;letter-spacing:2px}
+.nav-links{display:flex;gap:6px}
+.nav-links button{
+  padding:9px 16px;border-radius:999px;font-size:.86rem;font-weight:500;color:var(--mist);
+  transition:all .3s var(--ease);
+}
+.nav-links button:hover,.nav-links button.active{color:#fff;background:var(--glass)}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:heroZoom 12s var(--ease) forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(6,8,15,.45) 0%, rgba(6,8,15,.1) 35%, rgba(6,8,15,.92) 88%, var(--ink) 100%);
+}
+.hero-inner{width:100%;max-width:1200px;margin-inline:auto;padding:0 clamp(18px,4vw,48px) clamp(56px,9vh,110px)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:3px;color:var(--ice);
+  background:var(--glass);border:1px solid var(--line);border-radius:999px;padding:8px 18px;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  margin-bottom:22px;opacity:0;animation:rise .9s var(--ease) .15s forwards;
+}
+.hero h1{
+  font-size:clamp(2.3rem,6.4vw,4.6rem);font-weight:300;line-height:1.18;letter-spacing:-.5px;
+  opacity:0;animation:rise 1s var(--ease) .3s forwards;
+}
+.hero h1 b{font-weight:700;background:linear-gradient(120deg,#fff 30%,var(--royal-soft));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{
+  margin-top:16px;max-width:520px;color:var(--mist);font-weight:300;font-size:1.02rem;line-height:1.9;
+  opacity:0;animation:rise 1s var(--ease) .45s forwards;
+}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* signature segmented control */
+.mode-switch{
+  display:inline-flex;margin-top:34px;padding:5px;border-radius:999px;position:relative;
+  background:rgba(10,14,26,.5);border:1px solid var(--line);
+  backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);
+  box-shadow:var(--shadow);
+  opacity:0;animation:rise 1s var(--ease) .6s forwards;
+}
+.mode-switch .pill{
+  position:absolute;top:5px;bottom:5px;border-radius:999px;background:var(--royal);
+  box-shadow:0 6px 22px -4px rgba(36,81,230,.75);
+  transition:right .45s var(--ease), width .45s var(--ease);
+}
+.mode-switch button{
+  position:relative;z-index:1;padding:12px 26px;border-radius:999px;font-size:.95rem;font-weight:500;color:var(--mist);
+  transition:color .3s;white-space:nowrap;
+}
+.mode-switch button.on{color:#fff;font-weight:700}
+@media(max-width:640px){.mode-switch button{padding:11px 18px;font-size:.88rem}}
+
+/* ---------- Filter dock ---------- */
+.dock-wrap{position:sticky;top:64px;z-index:50;padding:0 clamp(14px,4vw,48px);margin-top:-8px}
+.dock{
+  max-width:1200px;margin-inline:auto;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  background:rgba(12,16,30,.6);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:12px;backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);
+  box-shadow:var(--shadow);
+}
+.search{
+  flex:1 1 220px;display:flex;align-items:center;gap:10px;
+  background:var(--glass);border:1px solid transparent;border-radius:999px;padding:11px 18px;
+  transition:border .3s;
+}
+.search:focus-within{border-color:var(--royal-soft)}
+.search svg{flex:none;opacity:.6}
+.search input{flex:1;background:none;border:none;outline:none;font-size:.95rem;color:#fff;min-width:0}
+.search input::placeholder{color:var(--mist);font-weight:300}
+.dock select{
+  appearance:none;background:var(--glass);border:1px solid transparent;border-radius:999px;
+  padding:11px 38px 11px 18px;font-size:.88rem;color:var(--ice);outline:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23E8EEFF' stroke-width='2.4'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+  transition:border .3s;
+}
+.dock select:focus{border-color:var(--royal-soft)}
+.dock select option{background:var(--ink-2);color:#fff}
+.count-chip{margin-inline-start:auto;font-size:.8rem;color:var(--mist);padding:0 8px;white-space:nowrap}
+@media(max-width:640px){.count-chip{display:none}}
+
+/* ---------- Grid ---------- */
+.section{max-width:1200px;margin-inline:auto;padding:clamp(34px,5vw,60px) clamp(14px,4vw,48px)}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:26px}
+.section-head h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:600;letter-spacing:-.3px}
+.section-head span{color:var(--mist);font-size:.85rem;font-weight:300}
+.grid{
+  display:grid;gap:clamp(10px,2vw,22px);
+  grid-template-columns:repeat(2,1fr);            /* هاتف: بطاقتان في الصف */
+}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1080px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+.card{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;cursor:pointer;
+  background:var(--glass);border:1px solid var(--line);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .4s;
+  opacity:0;transform:translateY(24px);
+}
+.card.in{opacity:1;transform:none}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(77,116,255,.45)}
+.card-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(140deg,#141a2e,#0b0f1c)}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.card:hover .card-img img{transform:scale(1.06)}
+.badge{
+  position:absolute;top:10px;inset-inline-start:10px;z-index:2;
+  font-size:.68rem;font-weight:700;letter-spacing:1px;padding:6px 12px;border-radius:999px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.2);
+}
+.badge.sale{background:rgba(36,81,230,.75);color:#fff}
+.badge.rent{background:rgba(255,255,255,.85);color:var(--ink)}
+.card-body{padding:14px 14px 16px}
+.card-body h3{font-size:clamp(.86rem,2.3vw,1.02rem);font-weight:600;line-height:1.45}
+.card-meta{margin-top:4px;font-size:.72rem;color:var(--mist);font-weight:300;display:flex;gap:8px;flex-wrap:wrap}
+.card-price{margin-top:10px;font-family:'Alexandria';font-weight:700;font-size:clamp(.9rem,2.5vw,1.05rem);color:var(--royal-soft)}
+.card-price small{font-family:'Tajawal';font-weight:300;color:var(--mist);font-size:.68rem}
+.empty{
+  grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--mist);
+  background:var(--glass);border:1px dashed var(--line);border-radius:var(--r-lg);
+}
+.empty b{display:block;color:#fff;font-family:'Alexandria';font-weight:600;font-size:1.1rem;margin-bottom:6px}
+
+/* ---------- Why us ---------- */
+.perks{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:900px){.perks{grid-template-columns:repeat(4,1fr)}}
+.perk{
+  background:var(--glass);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:22px 18px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.perk .ic{
+  width:42px;height:42px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px;
+  background:linear-gradient(140deg,var(--royal),var(--royal-deep));box-shadow:0 8px 20px -6px rgba(36,81,230,.6);
+}
+.perk h3{font-size:.95rem;font-weight:600;margin-bottom:6px}
+.perk p{font-size:.8rem;color:var(--mist);font-weight:300;line-height:1.8}
+
+/* ---------- Detail overlay ---------- */
+.overlay{
+  position:fixed;inset:0;z-index:100;display:none;overflow-y:auto;overscroll-behavior:contain;
+  background:rgba(6,8,15,.6);backdrop-filter:blur(30px) saturate(150%);-webkit-backdrop-filter:blur(30px) saturate(150%);
+}
+.overlay.open{display:block;animation:fade .4s var(--ease)}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.detail{max-width:1080px;margin:clamp(64px,9vh,100px) auto 60px;padding:0 clamp(14px,4vw,40px)}
+.detail-card{
+  background:rgba(14,18,34,.72);border:1px solid var(--line);border-radius:32px;overflow:hidden;
+  box-shadow:var(--shadow);animation:pop .55s var(--ease);
+}
+@keyframes pop{from{opacity:0;transform:translateY(34px) scale(.97)}to{opacity:1;transform:none}}
+.detail-hero{position:relative;aspect-ratio:16/8.4;background:#0b0f1c}
+.detail-hero img{width:100%;height:100%;object-fit:cover}
+.detail-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(14,18,34,.9))}
+.close-btn{
+  position:fixed;top:18px;inset-inline-end:18px;z-index:110;
+  width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.12);border:1px solid var(--line);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  transition:background .3s;
+}
+.close-btn:hover{background:rgba(255,255,255,.22)}
+.detail-body{padding:clamp(20px,4vw,40px)}
+.detail-top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;justify-content:space-between}
+.detail-top h2{font-size:clamp(1.4rem,3.4vw,2.2rem);font-weight:700;letter-spacing:-.4px}
+.detail-top .sub{color:var(--mist);font-weight:300;font-size:.9rem;margin-top:6px}
+.price-block{text-align:start}
+.price-block .p{font-family:'Alexandria';font-weight:800;font-size:clamp(1.3rem,3vw,1.9rem);color:var(--royal-soft);white-space:nowrap}
+.price-block small{color:var(--mist);font-weight:300;font-size:.75rem}
+.specs{display:grid;gap:10px;grid-template-columns:repeat(2,1fr);margin:26px 0}
+@media(min-width:720px){.specs{grid-template-columns:repeat(3,1fr)}}
+.spec{
+  background:var(--glass);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;
+}
+.spec .k{font-size:.7rem;color:var(--mist);letter-spacing:1px;margin-bottom:5px}
+.spec .v{font-weight:600;font-size:.92rem}
+.detail-desc{color:var(--mist);font-weight:300;line-height:2;font-size:.95rem;max-width:720px}
+
+/* form */
+.book{
+  margin-top:30px;background:var(--glass);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:clamp(18px,3vw,28px);
+}
+.book h3{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.book .hint{color:var(--mist);font-size:.8rem;font-weight:300;margin-bottom:18px}
+.form-grid{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.form-grid{grid-template-columns:1fr 1fr}}
+.field input,.field select{
+  width:100%;background:rgba(6,8,15,.5);border:1px solid var(--line);border-radius:14px;
+  padding:13px 16px;font-size:.92rem;color:#fff;outline:none;transition:border .3s;appearance:none;
+}
+.field select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23E8EEFF' stroke-width='2.4'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:left 16px center;
+}
+.field select option{background:var(--ink-2)}
+.field input:focus,.field select:focus{border-color:var(--royal-soft)}
+.field input.err{border-color:#ff5d5d}
+.field .msg{font-size:.72rem;color:#ff8a8a;margin-top:5px;display:none}
+.field.show-err .msg{display:block}
+.submit{
+  grid-column:1/-1;margin-top:4px;
+  background:var(--royal);border-radius:16px;padding:15px;font-size:1rem;font-weight:700;color:#fff;
+  box-shadow:0 12px 30px -8px rgba(36,81,230,.7);
+  transition:transform .3s var(--ease), box-shadow .3s;
+}
+.submit:hover{transform:translateY(-2px);box-shadow:0 18px 38px -8px rgba(36,81,230,.8)}
+.submit:active{transform:scale(.98)}
+.success{
+  display:none;text-align:center;padding:34px 16px;
+}
+.success.show{display:block;animation:pop .5s var(--ease)}
+.success .ok{
+  width:64px;height:64px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(140deg,var(--royal),var(--royal-deep));box-shadow:0 14px 34px -8px rgba(36,81,230,.7);
+}
+.success h4{font-family:'Alexandria';font-size:1.15rem;margin-bottom:6px}
+.success p{color:var(--mist);font-weight:300;font-size:.88rem}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid rgba(255,255,255,.07);margin-top:20px}
+.foot{
+  max-width:1200px;margin-inline:auto;padding:34px clamp(16px,4vw,48px);
+  display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
+  color:var(--mist);font-size:.8rem;font-weight:300;
+}
+.no-scroll{overflow:hidden}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="brand"><span class="dot"></span> RIWAQ MOTORS <small>ALGÉRIE</small></div>
+  <div class="nav-links">
+    <button onclick="setMode('all');scrollToCars()" >جميع السيارات</button>
+    <button onclick="setMode('sale');scrollToCars()">البيع</button>
+    <button onclick="setMode('rent');scrollToCars()">الكراء</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-media">
+    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1800&auto=format&fit=crop" alt="سيارة فاخرة" onerror="this.remove()">
+  </div>
+  <div class="hero-inner">
+    <span class="eyebrow">بيع • كراء • فخامة</span>
+    <h1>قُد الحلم،<br><b>بأسلوبك الخاص.</b></h1>
+    <p>وجهتك الأولى في الجزائر لبيع وكراء السيارات الفاخرة. اختر سيارتك، احجزها في دقائق، ونتكفّل نحن بالباقي.</p>
+    <div class="mode-switch" id="modeSwitch">
+      <span class="pill" id="modePill"></span>
+      <button data-mode="all" class="on" onclick="setMode('all')">الكل</button>
+      <button data-mode="sale" onclick="setMode('sale')">للبيع</button>
+      <button data-mode="rent" onclick="setMode('rent')">للكراء</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== FILTER DOCK ===== -->
+<div class="dock-wrap">
+  <div class="dock">
+    <label class="search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E8EEFF" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+      <input id="q" type="search" placeholder="ابحث عن ماركة أو موديل…" oninput="render()">
+    </label>
+    <select id="brand" onchange="render()"><option value="">كل الماركات</option></select>
+    <select id="sort" onchange="render()">
+      <option value="new">الأحدث سنة</option>
+      <option value="low">السعر: من الأقل</option>
+      <option value="high">السعر: من الأعلى</option>
+    </select>
+    <span class="count-chip" id="count"></span>
+  </div>
+</div>
+
+<!-- ===== GRID ===== -->
+<main class="section" id="cars">
+  <div class="section-head">
+    <h2 id="gridTitle">جميع السيارات</h2>
+    <span id="gridSub"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- ===== PERKS ===== -->
+<section class="section">
+  <div class="section-head"><h2>لماذا RIWAQ MOTORS؟</h2></div>
+  <div class="perks">
+    <div class="perk">
+      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3>سيارات مفحوصة</h3><p>كل سيارة تمر عبر فحص تقني شامل قبل عرضها للبيع أو الكراء.</p>
+    </div>
+    <div class="perk">
+      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18"/></svg></div>
+      <h3>دفع مرن</h3><p>ادفع نقدًا عند الاستلام أو بالتقسيط حسب الصيغة التي تناسبك.</p>
+    </div>
+    <div class="perk">
+      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7z"/></svg></div>
+      <h3>عقود موثّقة</h3><p>إجراءات قانونية واضحة وعقود رسمية تحمي حقوقك بالكامل.</p>
+    </div>
+    <div class="perk">
+      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+      <h3>حجز في دقائق</h3><p>املأ الطلب ويتصل بك فريقنا لتأكيد الحجز في أقرب وقت.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <div class="brand"><span class="dot"></span> RIWAQ MOTORS</div>
+    <span>الجزائر العاصمة — نخدم كل ولايات الوطن الـ58</span>
+    <span>© 2026 RIWAQ MOTORS. جميع الحقوق محفوظة.</span>
+  </div>
+</footer>
+
+<!-- ===== DETAIL OVERLAY ===== -->
+<div class="overlay" id="overlay">
+  <button class="close-btn" onclick="closeDetail()" aria-label="إغلاق">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <div class="detail"><div class="detail-card" id="detailCard"></div></div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const DZD = n => n.toLocaleString('fr-DZ');
+const CARS = [
+ {id:1, brand:'Mercedes-Benz', model:'AMG GT', year:2023, type:'sale', price:14500000, img:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:2, engine:'4.0L V8', color:'رمادي فضي', km:'12 000 كم',
+  desc:'أيقونة الأداء الألماني. محرك V8 مزدوج التيربو، تجهيزات AMG كاملة، وحالة ممتازة تليق بعشاق القيادة الرياضية الفاخرة.'},
+ {id:2, brand:'BMW', model:'M4 Competition', year:2022, type:'sale', price:11800000, img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:4, engine:'3.0L 6cyl', color:'أزرق ساو باولو', km:'18 500 كم',
+  desc:'مزيج مثالي بين الأناقة والقوة. صيانة وكالة موثّقة، داخلية جلد كاملة، ونظام صوتي Harman Kardon.'},
+ {id:3, brand:'Audi', model:'R8 V10', year:2021, type:'rent', price:60000, img:'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:2, engine:'5.2L V10', color:'رمادي دايتونا', km:'—',
+  desc:'لمناسباتك الاستثنائية: أعراس، جلسات تصوير، أو نهاية أسبوع لا تُنسى. تسليم واستلام في المكان الذي تختاره.'},
+ {id:4, brand:'Porsche', model:'911 Carrera', year:2022, type:'rent', price:55000, img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:4, engine:'3.0L Twin-Turbo', color:'أصفر سباق', km:'—',
+  desc:'الأسطورة الألمانية متاحة للكراء اليومي. مثالية للمناسبات الراقية وجلسات التصوير الاحترافية.'},
+ {id:5, brand:'Tesla', model:'Model 3 Performance', year:2023, type:'sale', price:7900000, img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=1200&auto=format&fit=crop',
+  fuel:'كهربائي', gear:'أوتوماتيك', seats:5, engine:'Dual Motor', color:'أحمر', km:'9 000 كم',
+  desc:'مستقبل القيادة بين يديك. تسارع خاطف، شحن سريع، وتحديثات برمجية مستمرة. اقتصادية وصديقة للبيئة.'},
+ {id:6, brand:'Range Rover', model:'Sport HSE', year:2023, type:'rent', price:45000, img:'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=1200&auto=format&fit=crop',
+  fuel:'ديزل', gear:'أوتوماتيك', seats:5, engine:'3.0L D300', color:'أبيض لؤلؤي', km:'—',
+  desc:'الفخامة البريطانية على كل الطرقات. مثالية للأعراس والوفود الرسمية والرحلات العائلية الطويلة.'},
+ {id:7, brand:'Ford', model:'Mustang GT', year:2022, type:'sale', price:9200000, img:'https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:4, engine:'5.0L V8', color:'أحمر', km:'21 000 كم',
+  desc:'صوت V8 الأمريكي الأصيل. سيارة عضلات بحالة استثنائية لعشاق الكلاسيكيات العصرية.'},
+ {id:8, brand:'Chevrolet', model:'Camaro SS', year:2021, type:'rent', price:38000, img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:4, engine:'6.2L V8', color:'برتقالي', km:'—',
+  desc:'حضور لا يمكن تجاهله. متاحة للكراء اليومي مع سائق أو بدون، حسب اختيارك.'},
+ {id:9, brand:'Audi', model:'A5 Sportback', year:2020, type:'sale', price:5600000, img:'https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:5, engine:'2.0L TFSI', color:'أحمر', km:'46 000 كم',
+  desc:'أناقة يومية بتكلفة معقولة. سيارة عائلية-رياضية بصيانة منتظمة ودفتر صيانة كامل.'},
+ {id:10, brand:'Mercedes-Benz', model:'Classe C 200', year:2021, type:'rent', price:22000, img:'https://images.unsplash.com/photo-1617531653332-bd46c24f2068?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:5, engine:'2.0L Turbo', color:'أسود', km:'—',
+  desc:'الاختيار الأمثل لرجال الأعمال والتنقلات اليومية الراقية. متوفرة للكراء اليومي والأسبوعي والشهري.'},
+ {id:11, brand:'BMW', model:'Série 5 530i', year:2022, type:'sale', price:8700000, img:'https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:5, engine:'2.0L Turbo', color:'أسود صافير', km:'27 000 كم',
+  desc:'سيدان تنفيذية بمواصفات أوروبية كاملة: مقاعد مدفّأة، شاشة عرض أمامية، وأنظمة مساعدة على القيادة.'},
+ {id:12, brand:'Lamborghini', model:'Huracán', year:2022, type:'rent', price:120000, img:'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=1200&auto=format&fit=crop',
+  fuel:'بنزين', gear:'أوتوماتيك', seats:2, engine:'5.2L V10', color:'أخضر', km:'—',
+  desc:'قمة ما يمكن كراؤه في الجزائر. للمناسبات التي تستحق أن تُروى. الحجز المسبق إلزامي.'},
+];
+
+const WILAYAS=["01 - أدرار","02 - الشلف","03 - الأغواط","04 - أم البواقي","05 - باتنة","06 - بجاية","07 - بسكرة","08 - بشار","09 - البليدة","10 - البويرة","11 - تمنراست","12 - تبسة","13 - تلمسان","14 - تيارت","15 - تيزي وزو","16 - الجزائر","17 - الجلفة","18 - جيجل","19 - سطيف","20 - سعيدة","21 - سكيكدة","22 - سيدي بلعباس","23 - عنابة","24 - قالمة","25 - قسنطينة","26 - المدية","27 - مستغانم","28 - المسيلة","29 - معسكر","30 - ورقلة","31 - وهران","32 - البيض","33 - إليزي","34 - برج بوعريريج","35 - بومرداس","36 - الطارف","37 - تندوف","38 - تيسمسيلت","39 - الوادي","40 - خنشلة","41 - سوق أهراس","42 - تيبازة","43 - ميلة","44 - عين الدفلى","45 - النعامة","46 - عين تموشنت","47 - غرداية","48 - غليزان","49 - تيميمون","50 - برج باجي مختار","51 - أولاد جلال","52 - بني عباس","53 - عين صالح","54 - عين قزام","55 - تقرت","56 - جانت","57 - المغير","58 - المنيعة"];
+
+/* ================= STATE ================= */
+let mode='all';
+
+/* brands */
+const brandSel=document.getElementById('brand');
+[...new Set(CARS.map(c=>c.brand))].sort().forEach(b=>{
+  brandSel.insertAdjacentHTML('beforeend',`<option value="${b}">${b}</option>`);
+});
+
+/* mode switch pill */
+function movePill(){
+  const sw=document.getElementById('modeSwitch');
+  const btn=sw.querySelector(`[data-mode="${mode}"]`);
+  const pill=document.getElementById('modePill');
+  pill.style.width=btn.offsetWidth+'px';
+  pill.style.right=(btn.offsetLeft - sw.querySelector('button').offsetLeft + 5)+'px';
+  // RTL: compute offset from right edge
+  const rect=btn.getBoundingClientRect(), swRect=sw.getBoundingClientRect();
+  pill.style.right=(swRect.right-rect.right)+'px';
+  sw.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.mode===mode));
+}
+function setMode(m){mode=m;movePill();render();}
+window.addEventListener('resize',movePill);
+
+function scrollToCars(){document.getElementById('cars').scrollIntoView({behavior:'smooth'})}
+
+/* ================= RENDER ================= */
+const grid=document.getElementById('grid');
+function render(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const brand=brandSel.value;
+  const sort=document.getElementById('sort').value;
+
+  let list=CARS.filter(c=>
+    (mode==='all'||c.type===mode)&&
+    (!brand||c.brand===brand)&&
+    (!q||`${c.brand} ${c.model}`.toLowerCase().includes(q))
+  );
+  if(sort==='new')list.sort((a,b)=>b.year-a.year);
+  if(sort==='low')list.sort((a,b)=>a.price-b.price);
+  if(sort==='high')list.sort((a,b)=>b.price-a.price);
+
+  document.getElementById('gridTitle').textContent=
+    mode==='sale'?'سيارات للبيع':mode==='rent'?'سيارات للكراء':'جميع السيارات';
+  document.getElementById('gridSub').textContent=`${list.length} سيارة`;
+  document.getElementById('count').textContent=`${list.length} نتيجة`;
+
+  if(!list.length){
+    grid.innerHTML=`<div class="empty"><b>لا توجد نتائج مطابقة</b>جرّب تعديل البحث أو الفلاتر للعثور على سيارتك.</div>`;
+    return;
+  }
+  grid.innerHTML=list.map(c=>`
+    <article class="card" onclick="openDetail(${c.id})">
+      <div class="card-img">
+        <span class="badge ${c.type==='sale'?'sale':'rent'}">${c.type==='sale'?'للبيع':'للكراء'}</span>
+        <img src="${c.img}" alt="${c.brand} ${c.model}" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <h3>${c.brand} ${c.model}</h3>
+        <div class="card-meta"><span>${c.year}</span><span>${c.fuel}</span><span>${c.gear}</span></div>
+        <div class="card-price">${DZD(c.price)} دج ${c.type==='rent'?'<small>/ اليوم</small>':''}</div>
+      </div>
+    </article>`).join('');
+
+  /* staggered reveal */
+  requestAnimationFrame(()=>{
+    grid.querySelectorAll('.card').forEach((el,i)=>{
+      setTimeout(()=>el.classList.add('in'), 40*i);
+    });
+  });
+}
+
+/* ================= DETAIL ================= */
+const overlay=document.getElementById('overlay');
+function openDetail(id){
+  const c=CARS.find(x=>x.id===id);
+  document.getElementById('detailCard').innerHTML=`
+    <div class="detail-hero"><img src="${c.img}" alt="${c.brand} ${c.model}" onerror="this.style.display='none'"></div>
+    <div class="detail-body">
+      <div class="detail-top">
+        <div>
+          <h2>${c.brand} ${c.model}</h2>
+          <div class="sub">${c.type==='sale'?'متوفرة للبيع':'متوفرة للكراء اليومي'} • موديل ${c.year}</div>
+        </div>
+        <div class="price-block">
+          <div class="p">${DZD(c.price)} دج</div>
+          <small>${c.type==='rent'?'السعر لليوم الواحد':'السعر قابل للتفاوض'}</small>
+        </div>
+      </div>
+      <div class="specs">
+        ${[['السنة',c.year],['الوقود',c.fuel],['علبة السرعة',c.gear],['المحرك',c.engine],['المقاعد',c.seats+' مقاعد'],['اللون',c.color],...(c.type==='sale'?[['المسافة المقطوعة',c.km]]:[])]
+          .map(([k,v])=>`<div class="spec"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('')}
+      </div>
+      <p class="detail-desc">${c.desc}</p>
+
+      <div class="book" id="bookBox">
+        <h3>${c.type==='sale'?'اطلب هذه السيارة':'احجز هذه السيارة'}</h3>
+        <div class="hint">املأ معلوماتك وسيتصل بك فريقنا خلال 24 ساعة لتأكيد ${c.type==='sale'?'الطلب':'الحجز'}.</div>
+        <div class="form-grid">
+          <div class="field"><input id="fName" placeholder="الاسم الكامل"><div class="msg">يرجى إدخال الاسم الكامل</div></div>
+          <div class="field"><input id="fPhone" inputmode="tel" placeholder="رقم الهاتف (05 / 06 / 07)"><div class="msg">رقم غير صحيح — يجب أن يبدأ بـ 05 أو 06 أو 07 ويتكون من 10 أرقام</div></div>
+          <div class="field"><select id="fWilaya"><option value="">اختر الولاية</option>${WILAYAS.map(w=>`<option>${w}</option>`).join('')}</select><div class="msg">يرجى اختيار الولاية</div></div>
+          ${c.type==='rent'?`<div class="field"><input id="fDays" inputmode="numeric" placeholder="عدد أيام الكراء"><div class="msg">أدخل عدد الأيام (1 فأكثر)</div></div>`:''}
+          <button class="submit" onclick="submitBooking(${c.id})">${c.type==='sale'?'إرسال الطلب':'تأكيد الحجز'}</button>
+        </div>
+      </div>
+      <div class="success" id="successBox">
+        <div class="ok"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h4>تم استلام طلبك بنجاح ✦</h4>
+        <p id="successMsg"></p>
+      </div>
+    </div>`;
+  overlay.classList.add('open');
+  document.body.classList.add('no-scroll');
+  overlay.scrollTop=0;
+}
+function closeDetail(){
+  overlay.classList.remove('open');
+  document.body.classList.remove('no-scroll');
+}
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeDetail()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail()});
+
+/* ================= BOOKING ================= */
+function submitBooking(id){
+  const c=CARS.find(x=>x.id===id);
+  const name=document.getElementById('fName');
+  const phone=document.getElementById('fPhone');
+  const wilaya=document.getElementById('fWilaya');
+  const days=document.getElementById('fDays');
+  let ok=true;
+  const check=(el,valid)=>{
+    el.closest('.field').classList.toggle('show-err',!valid);
+    el.classList.toggle('err',!valid);
+    if(!valid)ok=false;
+  };
+  check(name,name.value.trim().length>=3);
+  check(phone,/^0[567]\d{8}$/.test(phone.value.replace(/\s/g,'')));
+  check(wilaya,!!wilaya.value);
+  if(days)check(days,parseInt(days.value)>=1);
+  if(!ok)return;
+
+  const total=days?parseInt(days.value)*c.price:c.price;
+  document.getElementById('successMsg').textContent=
+    c.type==='rent'
+    ?`حجز ${c.brand} ${c.model} لمدة ${days.value} يوم — المجموع التقديري: ${DZD(total)} دج. سنتصل بك على ${phone.value} قريبًا.`
+    :`طلبك لشراء ${c.brand} ${c.model} قيد المعالجة. سنتصل بك على ${phone.value} خلال 24 ساعة.`;
+  document.getElementById('bookBox').style.display='none';
+  document.getElementById('successBox').classList.add('show');
+}
+
+/* ================= NAV SCROLL ================= */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);
+},{passive:true});
+
+/* init */
+render();
+window.addEventListener('load',movePill);
+</script>
+</body>
+</html>
