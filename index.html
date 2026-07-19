@@ -33,6 +33,7 @@
       color: var(--white);
       overflow-x: hidden;
       min-height: 100vh;
+      padding-top: 70px; /* إضافة مسافة للـ navbar */
     }
     body::before {
       content: "";
@@ -64,6 +65,7 @@
       backdrop-filter: blur(22px) saturate(160%);
       -webkit-backdrop-filter: blur(22px) saturate(160%);
       border-bottom: 1px solid rgba(255,255,255,0.06);
+      height: 70px; /* ارتفاع ثابت للـ navbar */
     }
     .brand { display: flex; align-items: center; gap: 10px; font-family: 'Alexandria'; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.5px; }
     .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--royal); box-shadow: 0 0 14px var(--royal-soft); }
@@ -85,10 +87,11 @@
     /* ---------- Filter dock ---------- */
     .dock-wrap {
       position: sticky;
-      top: 64px;
+      top: 70px; /* مطابق لارتفاع الـ navbar */
       z-index: 50;
       padding: 0 clamp(14px, 4vw, 48px);
       margin-top: 16px;
+      background: var(--ink); /* إضافة خلفية لمنع الشفافية */
     }
     .dock {
       max-width: 1200px;
@@ -115,6 +118,7 @@
       border-radius: 999px;
       padding: 11px 18px;
       transition: border 0.3s;
+      min-width: 0; /* مهم للـ flex */
     }
     .search:focus-within { border-color: var(--royal-soft); }
     .search svg { flex: none; opacity: 0.6; }
@@ -142,6 +146,8 @@
       background-repeat: no-repeat;
       background-position: right 16px center;
       transition: border 0.3s;
+      min-width: 140px; /* عرض أدنى للـ select */
+      flex-shrink: 0; /* منع الانكماش */
     }
     .dock select:focus { border-color: var(--royal-soft); }
     .dock select option { background: var(--ink-2); color: #fff; }
@@ -152,8 +158,29 @@
       padding: 0 8px;
       white-space: nowrap;
     }
+    
+    /* تحسينات للهواتف */
     @media (max-width: 640px) {
+      .dock {
+        padding: 10px;
+        gap: 8px;
+      }
+      .search {
+        flex: 1 1 100%; /* يأخذ العرض الكامل */
+        min-width: 100%;
+      }
+      .dock select {
+        flex: 1; /* توزيع متساوي للـ select */
+        min-width: auto;
+        font-size: 0.8rem;
+        padding: 10px 30px 10px 12px;
+      }
       .count-chip { display: none; }
+      
+      /* تحسين المسافات للأقسام */
+      .section {
+        padding-top: 24px;
+      }
     }
 
     /* ---------- Grid ---------- */
@@ -167,6 +194,8 @@
       align-items: baseline;
       justify-content: space-between;
       margin-bottom: 26px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
     .section-head h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; letter-spacing: -0.3px; }
     .section-head span { color: var(--mist); font-size: 0.85rem; font-weight: 300; }
@@ -550,12 +579,12 @@
         {id:2, brand:'BMW', model:'M4 Competition', year:2022, type:'sale', price:11800000, img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200&auto=format&fit=crop', fuel:'بنزين', gear:'أوتوماتيك', seats:4, engine:'3.0L 6cyl', color:'أزرق ساو باولو', km:'18 500 كم', desc:'مزيج مثالي بين الأناقة والقوة. صيانة وكالة موثّقة، داخلية جلد كاملة، ونظام صوتي Harman Kardon.'},
         {id:3, brand:'Audi', model:'R8 V10', year:2021, type:'rent', price:60000, img:'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1200&auto=format&fit=crop', fuel:'بنزين', gear:'أوتوماتيك', seats:2, engine:'5.2L V10', color:'رمادي دايتونا', km:'—', desc:'لمناسباتك الاستثنائية: أعراس، جلسات تصوير، أو نهاية أسبوع لا تُنسى. تسليم واستلام في المكان الذي تختاره.'},
         {id:4, brand:'Porsche', model:'911 Carrera', year:2022, type:'rent', price:55000, img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop', fuel:'بنزين', gear:'أوتوماتيك', seats:4, engine:'3.0L Twin-Turbo', color:'أصفر سباق', km:'—', desc:'الأسطورة الألمانية متاحة للكراء اليومي. مثالية للمناسبات الراقية وجلسات التصوير الاحترافية.'},
-        {id:5, brand:'Tesla', model:'Model 3 Performance', year:2023, type:'sale', price:7900000, img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=1200&auto=format&fit=crop', fuel:'كهربائي', gear:'أوتوماتيك', seats:5, engine:'Dual Motor', color:'أحمر', km:'9 000 كم', desc:'مستقبل القيادة بين يديك. تسارع خاطف، شحن سريع، وتحديثات برمجية مستمرة. اقتصادية وصديقة للبيئة.'},
-        {id:6, brand:'Range Rover', model:'Sport HSE', year:2023, type:'rent', price:45000, img:'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=1200&auto=format&fit=crop', fuel:'ديزل', gear:'أوتوماتيك', seats:5, engine:'3.0L D300', color:'أبيض لؤلؤي', km:'—', desc:'الفخامة البريطانية على كل الطرقات. مثالية للأعراس والوفود الرسمية والرحلات العائلية الطويلة.'},
+        {id:5, brand:'Tesla', model:'Model 3 Performance', year:2023, type:'sale', price:7900000, img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHW4Eq8HyACAGStv0BIwCld87RGNIT_D5LfmxFsAmcS3D-fFrNWdzyhAFg&s=10', fuel:'كهربائي', gear:'أوتوماتيك', seats:5, engine:'Dual Motor', color:'أحمر', km:'9 000 كم', desc:'مستقبل القيادة بين يديك. تسارع خاطف، شحن سريع، وتحديثات برمجية مستمرة. اقتصادية وصديقة للبيئة.'},
+        {id:6, brand:'Range Rover', model:'Sport HSE', year:2023, type:'rent', price:45000, img:'https://dbz-images.dubizzle.com/images/2026/04/27/4cf17906827d47aabed8c91740e2d027-.png?impolicy=lpv', fuel:'ديزل', gear:'أوتوماتيك', seats:5, engine:'3.0L D300', color:'أبيض لؤلؤي', km:'—', desc:'الفخامة البريطانية على كل الطرقات. مثالية للأعراس والوفود الرسمية والرحلات العائلية الطويلة.'},
         {id:7, brand:'Ford', model:'Mustang GT', year:2022, type:'sale', price:9200000, img:'https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?q=80&w=1200&auto=format&fit=crop', fuel:'بنزين', gear:'أوتوماتيك', seats:4, engine:'5.0L V8', color:'أحمر', km:'21 000 كم', desc:'صوت V8 الأمريكي الأصيل. سيارة عضلات بحالة استثنائية لعشاق الكلاسيكيات العصرية.'},
         {id:8, brand:'Chevrolet', model:'Camaro SS', year:2021, type:'rent', price:38000, img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1200&auto=format&fit=crop', fuel:'بنزين', gear:'أوتوماتيك', seats:4, engine:'6.2L V8', color:'برتقالي', km:'—', desc:'حضور لا يمكن تجاهله. متاحة للكراء اليومي مع سائق أو بدون، حسب اختيارك.'},
         {id:9, brand:'Audi', model:'A5 Sportback', year:2020, type:'sale', price:5600000, img:'https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1200&auto=format&fit=crop', fuel:'بنزين', gear:'أوتوماتيك', seats:5, engine:'2.0L TFSI', color:'أحمر', km:'46 000 كم', desc:'أناقة يومية بتكلفة معقولة. سيارة عائلية-رياضية بصيانة منتظمة ودفتر صيانة كامل.'},
-        {id:10, brand:'Mercedes-Benz', model:'Classe C 200', year:2021, type:'rent', price:22000, img:'https://images.unsplash.com/photo-1617531653332-bd46c24f2068?q=80&w=1200&auto=format&fit=crop', fuel:'بنزين', gear:'أوتوماتيك', seats:5, engine:'2.0L Turbo', color:'أسود', km:'—', desc:'الاختيار الأمثل لرجال الأعمال والتنقلات اليومية الراقية. متوفرة للكراء اليومي والأسبوعي والشهري.'},
+        {id:10, brand:'Mercedes-Benz', model:'Classe C 200', year:2021, type:'rent', price:22000, img:'https://octane.rent/wp-content/uploads/2024/06/mercedes-benz-c-class-black-1.jpg', fuel:'بنزين', gear:'أوتوماتيك', seats:5, engine:'2.0L Turbo', color:'أسود', km:'—', desc:'الاختيار الأمثل لرجال الأعمال والتنقلات اليومية الراقية. متوفرة للكراء اليومي والأسبوعي والشهري.'},
         {id:11, brand:'BMW', model:'Série 5 530i', year:2022, type:'sale', price:8700000, img:'https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?q=80&w=1200&auto=format&fit=crop', fuel:'بنزين', gear:'أوتوماتيك', seats:5, engine:'2.0L Turbo', color:'أسود صافير', km:'27 000 كم', desc:'سيدان تنفيذية بمواصفات أوروبية كاملة: مقاعد مدفّأة، شاشة عرض أمامية، وأنظمة مساعدة على القيادة.'},
         {id:12, brand:'Lamborghini', model:'Huracán', year:2022, type:'rent', price:120000, img:'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=1200&auto=format&fit=crop', fuel:'بنزين', gear:'أوتوماتيك', seats:2, engine:'5.2L V10', color:'أخضر', km:'—', desc:'قمة ما يمكن كراؤه في الجزائر. للمناسبات التي تستحق أن تُروى. الحجز المسبق إلزامي.'},
       ];
